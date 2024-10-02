@@ -3,12 +3,12 @@ from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunct
 
 embedding_function = SentenceTransformerEmbeddingFunction()
 
-chroma_collection = load_chroma(filename='microsoft_annual_report_2022.pdf', collection_name='microsoft_annual_report_2022', embedding_function=embedding_function)
+chroma_collection = load_chroma(filename='./pdfs/Persian-Literature.pdf', collection_name='microsoft_annual_report_2022', embedding_function=embedding_function)
 chroma_collection.count()
 
-import umap
+import umap # for projecting high demensional data to 2 demensional space
 import numpy as np
-from tqdm import tqdm
+from tqdm import tqdm # shows a percentage bar
 
 embeddings = chroma_collection.get(include=['embeddings'])['embeddings']
 umap_transform = umap.UMAP(random_state=0, transform_seed=0).fit(embeddings)
@@ -29,7 +29,7 @@ plt.scatter(projected_dataset_embeddings[:, 0], projected_dataset_embeddings[:, 
 plt.gca().set_aspect('equal', 'datalim')
 plt.title('Projected Embeddings')
 plt.axis('off')
-
+print(plt.axis('off'))
 
 query = "What is the total revenue?"
 

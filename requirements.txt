@@ -3,3 +3,7 @@ langchain
 chromadb
 openai
 sentence-transformers
+umap-learn
+tqdm
+numpy
+matplotlib
